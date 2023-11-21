@@ -8,7 +8,7 @@ const App = () => {
   return (
     <>
     <h1>List of Puppies</h1>
-    {showDetails ? <PuppyDetails/> : <PuppyList setShowDetails={setShowDetails}/>}
+    {showDetails ? <PuppyDetails setShowDetails={setShowDetails}/> : <PuppyList setShowDetails={setShowDetails}/>}
     </>
   )
 }
