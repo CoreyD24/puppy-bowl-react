@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useEffect } from "react"
 
-const PuppyList = () => {
+const PuppyList = ({setShowDetails}) => {
     const [puppyList, setPuppyList] = useState([])
     useEffect (() =>{
         const getPuppies = async () =>{
@@ -24,8 +24,11 @@ const PuppyList = () => {
         <>
         <h2>Puppy Names</h2>
         {puppyList.map((singlePuppyName) => {
-            return <li key={singlePuppyName.id}>{singlePuppyName.name}</li>
-        })
+            return ( 
+                <li onClick={() => setShowDetails(true)} key={singlePuppyName.id}>
+                {singlePuppyName.name}
+                </li>
+        )})
         }
         </>
     )

@@ -1,5 +1,5 @@
 const PuppyDetails = () => {
-    return <h3>puppy details</h3>
+    return <h2>Puppy Details</h2>
 }
 
 export default PuppyDetails
