@@ -2,19 +2,33 @@ import { useState } from "react"
 import { useEffect } from "react"
 
 const PuppyList = () => {
-    const [puppyData, setPuppyData] = useState({})
+    const [puppyList, setPuppyList] = useState([])
     useEffect (() =>{
-        const listedPuppies = async () =>{
-            const data = await fetch (`https://fsa-puppy-bowl.herokuapp.com/api/2310-FSA-ET-WEB-FT-SF/players`)
-            const responseJson = await data.json()
+        const getPuppies = async () =>{
+            try {
+                const response = await fetch (`https://fsa-puppy-bowl.herokuapp.com/api/2310-FSA-ET-WEB-FT-SF/players`)
+                const responseJson = await response.json();
+                const puppies = responseJson.data.players
+                setPuppyList(puppies)
+                console.log(puppies)
+            } 
 
-            //not sure what i'm doing wrong. can't get puppyData set to anything
-            
-            //console.log(responseJson.data.players);
-            puppyData = responseJson.data
-            console.log(puppyData)
+            catch (error) {
+                console.log(error)
+            }
         }
-        listedPuppies();
-    }, [])}
+        getPuppies();
+    },[])
+
+    return(
+        <>
+        <h2>Puppy Names</h2>
+        {puppyList.map((singlePuppyName) => {
+            return <li key={singlePuppyName.id}>{singlePuppyName.name}</li>
+        })
+        }
+        </>
+    )
+}
 
 export default PuppyList
