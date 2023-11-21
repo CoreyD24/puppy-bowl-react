@@ -10,7 +10,7 @@ const PuppyList = ({setShowDetails}) => {
                 const responseJson = await response.json();
                 const puppies = responseJson.data.players
                 setPuppyList(puppies)
-                console.log(puppies)
+                //console.log(puppies)
             } 
 
             catch (error) {
@@ -19,15 +19,12 @@ const PuppyList = ({setShowDetails}) => {
         }
         getPuppies();
     },[])
-
     return(
         <>
         <h2>Puppy Names</h2>
         {puppyList.map((singlePuppyName) => {
             return ( 
-                <li onClick={() => setShowDetails(true)} key={singlePuppyName.id}>
-                {singlePuppyName.name}
-                </li>
+                <li onClick={() => setShowDetails(true)} key={singlePuppyName.id}>{singlePuppyName.name}</li>
         )})
         }
         </>
